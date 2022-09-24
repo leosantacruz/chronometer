@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const logs = ref([]);
 const timer = ref(0);
@@ -42,6 +42,14 @@ const pause = () => {
   }
   pauseStatus.value = !pauseStatus.value;
 };
+
+const sum = computed(() => {
+  let result = 0;
+  logs.value.forEach((r) => {
+    result += r;
+  });
+  return result.toFixed(1);
+});
 </script>
 
 <template>
@@ -53,14 +61,17 @@ const pause = () => {
           <div @click="pause"><img src="/pause.svg" alt="" /></div>
           <div @click="reset"><img src="/refresh-ccw.svg" alt="" /></div>
         </div>
-        <div>46</div>
+        <div>{{ sum }}</div>
       </div>
     </div>
     <div id="logs">
       <div v-for="index in 20" :key="index">{{ logs[index] }}</div>
     </div>
-    <div id="action" @click="add()" :class="{ forbidden: logs.length >= 21 }">
-      <div class="button"><img src="/plus-square.svg" alt="" /></div>
+    <div id="action" @click="add()">
+      <div class="button">
+        <img v-if="logs.length < 21" src="/plus-square.svg" alt="" />
+        <img v-else src="/check.svg" alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -126,12 +137,12 @@ const pause = () => {
   transition: all 0.3s linear;
 }
 #action .button {
-  transition: all 0.1s linear;
+  transition: all 0.05s linear;
 }
 #action .button:active {
   transform: scale(0.9);
 }
-.forbidden {
+.forbidden img {
   opacity: 0.5;
 }
 </style>
