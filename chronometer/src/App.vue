@@ -50,8 +50,8 @@ const pause = () => {
       <div class="dynamic-island">
         <div>{{ timer }}</div>
         <div class="actions">
-          <div @click="pause"><img src="pause.svg" alt="" /></div>
-          <div @click="reset"><img src="refresh-ccw.svg" alt="" /></div>
+          <div @click="pause"><img src="/pause.svg" alt="" /></div>
+          <div @click="reset"><img src="/refresh-ccw.svg" alt="" /></div>
         </div>
         <div>46</div>
       </div>
@@ -60,7 +60,7 @@ const pause = () => {
       <div v-for="index in 20" :key="index">{{ logs[index] }}</div>
     </div>
     <div id="action" @click="add()" :class="{ forbidden: logs.length >= 21 }">
-      <div class="button"><img src="plus-square.svg" alt="" /></div>
+      <div class="button"><img src="/plus-square.svg" alt="" /></div>
     </div>
   </div>
 </template>
