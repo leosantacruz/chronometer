@@ -54,9 +54,9 @@ const sum = computed(() => {
 
 <template>
   <div id="container-grid">
-    <div id="header">
+    <div id="header" class="animation">
       <div class="dynamic-island">
-        <div>{{ timer }}</div>
+        <div>{{ (timer / 10).toFixed(1) }}</div>
         <div class="actions">
           <div @click="pause"><img src="/pause.svg" alt="" /></div>
           <div @click="reset"><img src="/refresh-ccw.svg" alt="" /></div>
@@ -64,8 +64,10 @@ const sum = computed(() => {
         <div>{{ sum }}</div>
       </div>
     </div>
-    <div id="logs">
-      <div v-for="index in 20" :key="index">{{ logs[index] }}</div>
+    <div id="logs" class="animation">
+      <div v-for="index in 20" :key="index">
+        {{ logs[index] }}
+      </div>
     </div>
     <div id="action" @click="add()">
       <div class="button">
@@ -87,8 +89,9 @@ const sum = computed(() => {
 #header {
   background-color: rgb(0, 225, 255);
 }
+
 #logs {
-  background-color: rgb(0, 225, 255);
+  transition: all linear;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -96,11 +99,10 @@ const sum = computed(() => {
   row-gap: 2px;
 }
 #logs div {
-  background-color: rgb(18, 18, 18);
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #10d4ff;
   font-size: 18px;
 }
 
@@ -144,5 +146,35 @@ const sum = computed(() => {
 }
 .forbidden img {
   opacity: 0.5;
+}
+
+.animation {
+  animation-name: crazy;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+}
+.animation div {
+  color: red;
+  animation-name: crazytext;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+}
+@keyframes crazy {
+  from {
+    background-color: rgb(0, 225, 255);
+  }
+  to {
+    background-color: rgb(255, 0, 162);
+  }
+}
+@keyframes crazytext {
+  from {
+    color: rgb(0, 225, 255);
+  }
+  to {
+    color: rgb(255, 0, 162);
+  }
 }
 </style>
