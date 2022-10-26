@@ -33,7 +33,7 @@ const reset = () => {
 };
 const playSound = (audiofilename) => {
   console.log(audiofilename);
-  const sound = new URL(`./${audiofilename}.mp3`, import.meta.url);
+  const sound = new URL("/new.mp3", import.meta.url);
   new Audio(sound.href).play();
 };
 const pause = () => {
