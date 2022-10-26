@@ -32,8 +32,10 @@ const reset = () => {
   clearInterval(interval);
 };
 const playSound = (audiofilename) => {
-  console.log(audiofilename);
-  const sound = new URL("/new.mp3", import.meta.url);
+  const sound =
+    audiofilename == "new"
+      ? new URL("/new.mp3", import.meta.url)
+      : new URL("/finish.mp3", import.meta.url);
   new Audio(sound.href).play();
 };
 const pause = () => {
