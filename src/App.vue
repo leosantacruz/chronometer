@@ -31,8 +31,9 @@ const reset = () => {
   timer.value = 0;
   clearInterval(interval);
 };
-const playSound = (audio) => {
-  const sound = new URL(`/${audio}.mp3`, import.meta.url);
+const playSound = (audiofilename) => {
+  console.log(audiofilename);
+  const sound = new URL(`./${audiofilename}.mp3`, import.meta.url);
   new Audio(sound.href).play();
 };
 const pause = () => {
