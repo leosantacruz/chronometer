@@ -17,10 +17,11 @@ const add = () => {
 
   if (logs.value.length <= 20) {
     logs.value.push(timer.value / 10);
+    playSound("new");
     start();
   }
   if (logs.value.length == 21) {
-    playSound();
+    playSound("finish");
   }
   timer.value = 0;
 };
@@ -30,8 +31,8 @@ const reset = () => {
   timer.value = 0;
   clearInterval(interval);
 };
-const playSound = () => {
-  const sound = new URL("/sound.mp3", import.meta.url);
+const playSound = (audio) => {
+  const sound = new URL(`/${audio}.mp3`, import.meta.url);
   new Audio(sound.href).play();
 };
 const pause = () => {
